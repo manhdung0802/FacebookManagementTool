@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "Multi‑Facebook Account Switcher",
+  "description": "Quản lý và chuyển đổi nhanh nhiều tài khoản Facebook an toàn, bảo mật 100%.",
+  "version": "1.1",
+  "permissions": [
+    "cookies",
+    "storage",
+    "tabs",
+    "scripting",
+    "webRequest",
+    "identity",
+    "browsingData"
+  ],
+  "host_permissions": [
+    "https://*.facebook.com/*"
+  ],
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.facebook.com/*"],
+      "js": ["content/content.js"],
+      "css": ["content/content.css"]
+    }
+  ]
+}

@@ -15,7 +15,7 @@ const translations = {
     pro: "",
     help: "📖 Hướng dẫn",
     saveBtn: "💾 Lưu tài khoản hiện tại",
-    logoutBtn: "➕ Đăng xuất an toàn (Thêm Nick)",
+    logoutBtn: "➕ Đăng xuất an toàn (Thêm Account)",
     donateBtn: "💖 Donate ủng hộ tác giả",
     donateTitle: "💖 Donate Cafe",
     donateDesc: "Cảm ơn bạn đã ủng hộ tác giả duy trì dự án này!",
@@ -32,7 +32,7 @@ const translations = {
     pro: "",
     help: "📖 Guide",
     saveBtn: "💾 Save current account",
-    logoutBtn: "➕ Safe Logout (Add New Nick)",
+    logoutBtn: "➕ Safe Logout (Add New Account)",
     donateBtn: "💖 Donate to Support",
     donateTitle: "💖 Donate Cafe",
     donateDesc: "Thank you for supporting the developer!",
@@ -53,15 +53,15 @@ function updateUI() {
   document.getElementById('exportBtn').textContent = t.saveBtn;
   document.getElementById('safeLogoutBtn').textContent = t.logoutBtn;
   donateBtn.textContent = t.donateBtn;
-  
+
   // Dialog Donate
   document.querySelector('#donateDialog h3').textContent = t.donateTitle;
   document.querySelector('#donateDialog p').textContent = t.donateDesc;
   document.querySelector('#donateDialog button[type="submit"]').textContent = currentLang === 'vn' ? 'Đóng' : 'Close';
-  
+
   const limitNote = document.getElementById('freeLimitNote');
   if (limitNote) limitNote.style.display = 'none';
-  
+
   const premiumBtn = document.getElementById('premiumBtn');
   if (premiumBtn) premiumBtn.style.display = 'none';
 
@@ -143,7 +143,7 @@ async function loadAccountsAndRender() {
 exportBtn.addEventListener('click', async () => {
   const name = prompt(translations[currentLang].promptName);
   if (!name) return;
-  
+
   chrome.runtime.sendMessage({ type: 'exportCurrent', accountName: name }, response => {
     if (response?.status === 'saved') {
       alert(translations[currentLang].alertSaveSuccess.replace('{name}', name));
